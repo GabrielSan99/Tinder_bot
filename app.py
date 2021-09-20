@@ -1,3 +1,4 @@
+import selenium
 from selenium import webdriver
 from time import sleep
 
