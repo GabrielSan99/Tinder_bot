@@ -23,21 +23,28 @@ class TinderBot:
         enter_button.click()
         sleep(1)
 
-    def waiting_for_manual_input(self):
-        input()
+    def waiting_for_manual_input(self):  
+        while True:
+            print("Are you on the tinder page? (y/n)")
+            var = input()
 
-    def fechar_notificao_de_localizacao(self):
-        permitir_localizacao = self.driver.find_element_by_xpath(
-            '//*[@id="c366415127"]/div/div/div/div/div[3]/button[1]')
+            if var == "y":
+                break
+            else:
+                pass
+        
+    def localization_pop_up(self):
+        enable_localization = self.driver.find_element_by_xpath(
+            '//*[@id="o-1268705039"]/div/div/div/div/div[3]/button[2]')
         sleep(3)
-        permitir_localizacao.click()
+        enable_localization.click()
         sleep(3)
 
-    def fechar_notificao_de_notificacoes(self):
-        pop_up_notificacoes = self.driver.find_element_by_xpath(
-            '//*[@id="c366415127"]/div/div/div/div/div[3]/button[2]')
+    def notifications_pop_up(self):
+        disable_notifications = self.driver.find_element_by_xpath(
+            '//*[@id="o-1268705039"]/div/div/div/div/div[3]/button[2]')
         sleep(3)
-        pop_up_notificacoes.click()
+        disable_notifications.click()
         sleep(3)
 
     def dar_like(self):
@@ -67,13 +74,14 @@ class TinderBot:
             except:
                 pass
 
+if __name__ == '__main__':
+    
+    bot = TinderBot()
+    bot.login()
+    bot.login_method()
+    bot.waiting_for_manual_input()
+    bot.localization_pop_up()
+    bot.notifications_pop_up()
 
-bot = TinderBot()
-bot.login()
-bot.login_method()
-bot.waiting_for_manual_input()
-bot.fechar_notificao_de_localizacao()
-bot.fechar_notificao_de_notificacoes()
-
-while True:
-    bot.dar_like()
+    while True:
+        bot.dar_like()
